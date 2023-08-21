@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  app:
+    platform: linux/amd64
+    build:
+      context: ./app
+    ports:
+      - "8080:8080"
+    volumes:
+      - app-data:/app/data
+    depends_on:
+      - db
+
+  db:
+    platform: linux/amd64
+    build:
+      context: ./db
+    image: amd64/mongo:4.4.6
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb-data:/data/db
+
+
+volumes:
+  app-data:
+  mongodb-data:
