@@ -2,11 +2,9 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser'); // Import body-parser
+require('dotenv').config()
+const PORT = process.env.PORT;
 
-
-const PORT = process.env.PORT || 8080;
-const MONGODB_URL = 'mongodb://db:27017/mydb';
-//const MONGODB_URL = 'mongodb://10.0.1.236:27017/mydb';
 
 // Define Mongoose schemas for Student, Instructor, and Course
 const studentSchema = new mongoose.Schema({
@@ -28,14 +26,17 @@ const Student = mongoose.model('Student', studentSchema);
 const Instructor = mongoose.model('Instructor', instructorSchema);
 const Course = mongoose.model('Course', courseSchema);
 
-// Connect to MongoDB using Mongoose
-mongoose.connect(MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => {
-    console.log('Connected to MongoDB');
-  })
-  .catch((error) => {
-    console.error('Error connecting to MongoDB:', error);
-  });
+// Connect to MongoDB Atlas using Mongoose
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => {
+  console.log('Connected to MongoDB Atlas');
+})
+.catch((error) => {
+  console.error('Error connecting to MongoDB Atlas:', error.message);
+});
 
 app.use(express.json()); // Enable JSON request body parsing
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -141,4 +142,6 @@ app.use(express.static('public'));
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
+}).on('error', (err) => {
+  console.log(`Failed listening port ${PORT}`);
 });
