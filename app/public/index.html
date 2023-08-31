@@ -2,52 +2,123 @@
 <html>
 <head>
   <title>Student and Course Management</title>
-  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    body {
+      background-image: url('https://img.freepik.com/free-vector/grey-bricks-wall-texture_1100-21.jpg');
+      background-repeat: repeat;
+      background-color: #f8f9fa;
+    }
+    .container {
+      padding: 30px;
+      color: #fff;
+    }
+    .management-section {
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    .management-section h2 {
+      margin-bottom: 20px;
+    }
+    label {
+      color: #fff;
+      margin-right: 5px;
+    }
+    input[type="text"], input[type="number"], select {
+      background-color: rgba(0, 0, 0, 0.5);
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      padding: 5px 10px;
+      margin-bottom: 10px;
+    }
+    button[type="submit"] {
+      background-color: #00adb5;
+      border-color: #00adb5;
+      color: #fff;
+    }
+    button[type="submit"]:hover {
+      background-color: #007f7f;
+      border-color: #007f7f;
+    }
+    .fixed-width {
+      width: 200px;
+    }
+    .list-box {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      border: 1px solid #fff;
+      box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.2);
+    }
+  </style>
 </head>
 <body>
   <div class="container">
-    <h1>Student and Course Management</h1>
+    <div class="d-flex justify-content-end mb-4">
+      <button id="logout-button" class="btn btn-danger">Logout</button>
+    </div>
+    <h1 class="text-center mb-4">Student and Course Management</h1>
 
     <section class="management-section">
       <h2>Students</h2>
       <form id="student-form">
         <label for="student-name">Name:</label>
-        <input type="text" id="student-name" name="name" required>
-        <label for="student-age">Age:</label>
-        <input type="number" id="student-age" name="age" required>
-        <button type="submit">Add Student</button>
+        <input type="text" id="student-name" name="name" class="fixed-width" required>
+        <label for="student-age">  Age:</label>
+        <input type="number" id="student-age" name="age" class="fixed-width" required>
+        <button type="submit" class="btn btn-primary">Add Student</button>
       </form>
-      <ul id="student-list"></ul>
+      <ul id="student-list" class="list-unstyled">
+        <!-- List items will be added dynamically -->
+      </ul>
     </section>
 
     <section class="management-section">
       <h2>Instructors</h2>
       <form id="instructor-form">
         <label for="instructor-name">Name:</label>
-        <input type="text" id="instructor-name" name="name" required>
+        <input type="text" id="instructor-name" name="name" class="fixed-width" required>
         <label for="instructor-expertise">Expertise:</label>
-        <input type="text" id="instructor-expertise" name="expertise" required>
-        <button type="submit">Add Instructor</button>
+        <input type="text" id="instructor-expertise" name="expertise" class="fixed-width" required>
+        <button type="submit" class="btn btn-primary">Add Instructor</button>
       </form>
-      <ul id="instructor-list"></ul>
+      <ul id="instructor-list" class="list-unstyled">
+        <!-- List items will be added dynamically -->
+      </ul>
     </section>
 
     <section class="management-section">
       <h2>Courses</h2>
       <form id="course-form">
         <label for="course-title">Title:</label>
-        <input type="text" id="course-title" name="title" required>
+        <input type="text" id="course-title" name="title" class="fixed-width" required>
         <label for="course-instructor">Instructor:</label>
-        <select id="course-instructor" name="instructor" required>
+        <select id="course-instructor" name="instructor"  class="fixed-width" required>
           <!-- Options will be populated dynamically -->
         </select>
-        <button type="submit">Add Course</button>
+        <button type="submit" class="btn btn-primary">Add Course</button>
       </form>
-      <ul id="course-list"></ul>
+      <ul id="course-list" class="list-unstyled">
+        <!-- List items will be added dynamically -->
+      </ul>
     </section>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
   <script src="scripts.js"></script>
+  <script>
+    const logoutButton = document.getElementById("logout-button");
+
+    logoutButton.addEventListener("click", () => {
+      // Clear token cookie
+      document.cookie = "token=; Path=/; Max-Age=0";
+      // Redirect to login page
+      window.location.href = "/auth/login.html";
+    });
+  </script>
 </body>
 </html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student and Course Management</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <style>
+    body {
+    background-image: url('https://img.freepik.com/free-vector/grey-bricks-wall-texture_1100-21.jpg');
+    background-repeat: repeat; /* or other repeat options like 'repeat-x', 'repeat-y', 'no-repeat' */
+    background-color: #f8f9fa; /* Fallback background color if image doesn't load or repeat is 'no-repeat' */
+    }
+    .container {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .login-card {
+      width: 400px;
+      border-radius: 15px;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+      background-color: #272b30ea;
+      color: #fff;
+    }
+    .login-card h1 {
+      color: #fff;
+    }
+    .login-card .form-label {
+      color: #ccc;
+    }
+    .login-card .form-control {
+      background-color: #4c4c4c;
+      color: #fff;
+      border: none;
+    }
+    .login-card .form-control:focus {
+      background-color: #22272e;
+      color: #fff;
+      border: none;
+      box-shadow: none;
+    }
+    .login-card .btn-primary {
+      background-color: #00adb5;
+      border-color: #00adb5;
+    }
+    .login-card .btn-primary:hover {
+      background-color: #007f7f;
+      border-color: #007f7f;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card login-card p-4">
+      <h1 class="text-center mb-4">Student and Course Management</h1>
+      <form id="login-form">
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input type="text" id="username" name="username" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" id="password" name="password" class="form-control" required>
+        </div>
+        <div class="d-grid">
+          <button type="submit" class="btn btn-primary btn-lg">Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
+  <script src="scripts.js"></script>
+</body>
+</html>

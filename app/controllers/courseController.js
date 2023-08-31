@@ -2,6 +2,10 @@ const express = require('express');
 const router = express.Router();
 const { check, validationResult } = require('express-validator');
 const Course = require('../models/courseModel');
+const authenticateUser = require('../middlewares/authMiddleware');
+
+// Secure routes using authentication middleware
+router.use(authenticateUser);
 
 // Middleware to validate course data before saving
 const validateCourseData = [

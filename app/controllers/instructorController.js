@@ -2,6 +2,10 @@ const express = require('express');
 const router = express.Router();
 const { check, validationResult } = require('express-validator');
 const Instructor = require('../models/instructorModel');
+const authenticateUser = require('../middlewares/authMiddleware');
+
+// Secure routes using authentication middleware
+router.use(authenticateUser);
 
 // Middleware to validate instructor data before saving
 const validateInstructorData = [

@@ -1,10 +1,9 @@
 // middlewares/errorMiddleware.js
-// Custom error handling middleware
 
 const notFound = (req, res, next) => {
-    const error = new Error(`Not Found - ${req.originalUrl}`);
     res.status(404);
-    next(error);
+    // Render the custom 404 page
+    res.redirect('/404.html'); 
   };
   
   const errorHandler = (err, req, res, next) => {
